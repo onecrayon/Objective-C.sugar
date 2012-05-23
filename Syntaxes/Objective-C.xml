@@ -75,9 +75,6 @@
 				</ends-with>
 				<subzones>
 					<include collection="character-escapes" />
-					<zone name="constant.character.format-specifier">
-						<expression>%(?:[hq]|l{1,2})?[@%dDiuUxXoOfeEgGcCsSpLaAfztjp]</expression>
-					</zone>
 				</subzones>
 			</zone>
 			<!--C strings-->
@@ -108,6 +105,9 @@
 		<collection name="character-escapes">
 			<zone name="constant.character.escape">
 				<expression>\\(x\h{2,4}|o?[0-7]+|.)</expression>
+			</zone>
+			<zone name="constant.character.format-specifier">
+				<expression>%(?:[hq]|l{1,2})?[@%dDiuUxXoOfeEgGcCsSpLaAfztjp]</expression>
 			</zone>
 		</collection>
 		
@@ -200,7 +200,7 @@
 		<!--Keywords and constants-->
 		<collection name="keywords">
 			<zone>
-				<expression>(?:\b(?:(auto|break|case|continue|default|do|else if|else|extern|for|goto|if|register|return|sizeof|static|switch|typedef|union|volatile|while|in|out|inout|bycopy|byref|oneway)|(self|super)|(YES|NO|NULL|nil|Nil|true|false)|([0-9]+\.?[0-9]*|\.[0-9]+))\b|(@(?:interface|implementation|protocol|end|private|protected|public|try|throw|catch|finally|class|selector|encode|synchronized|property|synthesize|dynamic)|(#(?:define|error|include|import|endif|ifdef|ifndef|if|undef|pragma))))</expression>
+				<expression>(?:\b(?:(auto|break|case|continue|default|do|else if|else|extern|for|goto|if|register|return|sizeof|static|switch|typedef|union|volatile|while|in|out|inout|bycopy|byref|oneway)|(self|super)|(YES|NO|NULL|nil|Nil|true|false)|([0-9]+\.?[0-9]*(?:[eE]-?[0-9]+)?|\.[0-9]+|0(?:x|X)\h+))\b|(@(?:interface|implementation|protocol|end|private|protected|public|try|throw|catch|finally|class|selector|encode|synchronized|property|synthesize|dynamic)|(#(?:define|error|include|import|endif|ifdef|ifndef|if|elif|undef|pragma|warning))))</expression>
 				<capture number="1" name="keyword.control"/>
 				<capture number="2" name="keyword.variable.language"/>
 				<capture number="3" name="constant.language"/>
@@ -209,7 +209,7 @@
 				<capture number="6" name="keyword.control.preprocessor"/>
 			</zone>
 			<zone name="keyword.storage.type">
-				<expression>char|const|double|enum|float|int|long|short|signed|struct|unsigned|void|bool|BOOL|id|Class|SEL|IMP|NSArray|NSMutableArray|NSAutoreleasePool|NSBundle|NSCalendar|NSDateComponents|NSCharacterSet|NSMutableCharacterSet|NSCoder|NSData|NSMutableData|NSPurgeableData|NSDate|NSDateFormatter|NSDecimalNumber|NSDecimalNumberHandler|NSDictionary|NSMutableDictionary|NSEnumerator|NSError|NSException|NSFileHandle|NSPipe|NSFileManager|NSDirectoryEnumerator|NSFormatter|NSIndexPath|NSIndexSet|NSMutableIndexSet|NSInvocation|NSKeyedArchiver|NSKeyedUnarchiver|NSLocale|NSLock|NSConditionLock|NSRecursiveLock|NSCondition|NSMethodSignature|NSNotification|NSNotificationCenter|NSNotificationQueue|NSNull|NSNumberFormatter|NSObject|NSPort|NSMachPort|NSSocketPort|NSProcessInfo|NSPropertyListSerialization|NSProxy|NSRange|NSRunLoop|NSScanner|NSSet|NSMutableSet|NSCountedSet|NSSortDescriptor|NSStream|NSInputStream|NSOutputStream|NSString|NSMutableString|NSThread|NSTimeZone|NSTimer|NSURL|NSUserDefaults|NSValue|NSNumber|NSZone</expression>
+				<expression>\b(?:char|const|double|enum|float|int|long|short|signed|struct|uint|unsigned|void|bool|BOOL|id|Class|SEL|IMP|NSArray|NSMutableArray|NSAutoreleasePool|NSBundle|NSCalendar|NSDateComponents|NSCharacterSet|NSMutableCharacterSet|NSCoder|NSData|NSMutableData|NSPurgeableData|NSDate|NSDateFormatter|NSDecimalNumber|NSDecimalNumberHandler|NSDictionary|NSMutableDictionary|NSEnumerator|NSError|NSException|NSFileHandle|NSPipe|NSFileManager|NSDirectoryEnumerator|NSFormatter|NSIndexPath|NSIndexSet|NSMutableIndexSet|NSInvocation|NSKeyedArchiver|NSKeyedUnarchiver|NSLocale|NSLock|NSConditionLock|NSRecursiveLock|NSCondition|NSMethodSignature|NSNotification|NSNotificationCenter|NSNotificationQueue|NSNull|NSNumberFormatter|NSObject|NSPort|NSMachPort|NSSocketPort|NSProcessInfo|NSPropertyListSerialization|NSProxy|NSRange|NSRunLoop|NSScanner|NSSet|NSMutableSet|NSCountedSet|NSSortDescriptor|NSStream|NSInputStream|NSOutputStream|NSString|NSMutableString|NSThread|NSTimeZone|NSTimer|NSURL|NSUserDefaults|NSValue|NSNumber|NSZone)\b</expression>
 			</zone>
 		</collection>
 		
