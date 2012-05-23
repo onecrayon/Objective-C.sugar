@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<itemizer>
+	
+	<!-- Classes -->
+	<recipe name="objc.class">
+		<class>ESCodeClassItem</class>
+		<start-selector>objective-c class.definition:has-child(name:capture(name)):capture(itemizer-firstused)</start-selector>
+		<end-selector>objective-c keyword.control[text=='@end']</end-selector>
+		<subrecipes>
+			<include-root-recipes />
+		</subrecipes>
+	</recipe>
+	
+	<!-- Methods -->
+	<recipe name="objc.method">
+		<start-selector>objective-c function.definition:has-child(name:capture(name)):capture(itemizer-firstused) + brace.curly.open</start-selector>
+		<end-selector>objective-c brace.curly.close</end-selector>
+		<subrecipes>
+			<include-root-recipes />
+		</subrecipes>
+	</recipe>
+	
+	<!-- switch ( ... ) { ... } -->
+	<recipe name="objc.block.control.switch">
+		<class>ESJSControlBlockItem</class>
+		<start-selector>objective-c keyword.control[text='switch']:capture(itemizer-firstused) + brace.round.open:capture(open-parameters) ~ brace.round.close:capture(close-parameters) + brace.curly.open</start-selector>
+		<end-selector>objective-c brace.curly.close</end-selector>
+		<subrecipes>
+			<include-root-recipes/>
+		</subrecipes>
+	</recipe>
+	<!-- switch ( ... ) /* coment */ { ... } -->
+	<recipe name="objc.block.control.switch">
+		<class>ESJSControlBlockItem</class>
+		<start-selector>objective-c keyword.control[text='switch']:capture(itemizer-firstused) + brace.round.open:capture(open-parameters) ~ brace.round.close:capture(close-parameters) + comment + brace.curly.open</start-selector>
+		<end-selector>objective-c brace.curly.close</end-selector>
+		<subrecipes>
+			<include-root-recipes/>
+		</subrecipes>
+	</recipe>
+	
+	<!-- case 'stuff': ... -->
+	<recipe name="objc.block.control.case">
+		<class>ESJSChunkBlockItem</class>
+		<selector>objective-c x-item-block.case</selector>
+		<subrecipes>
+			<include-root-recipes/>
+		</subrecipes>
+	</recipe>
+	
+	<!-- if (...) { ... } -->
+	<recipe name="objc.block.control">
+		<class>ESJSControlBlockItem</class>
+		<start-selector>objective-c keyword.control:capture(itemizer-firstused) + brace.round.open:capture(open-parameters) ~ brace.round.close:capture(close-parameters) + brace.curly.open</start-selector>
+		<end-selector>objective-c brace.curly.close</end-selector>
+		<subrecipes>
+			<include-root-recipes/>
+		</subrecipes>
+	</recipe>
+	<!-- if (...) /* comment */ { ... } -->
+	<recipe name="objc.block.control">
+		<class>ESJSControlBlockItem</class>
+		<start-selector>objective-c keyword.control:capture(itemizer-firstused) + brace.round.open:capture(open-parameters) ~ brace.round.close:capture(close-parameters) + comment + brace.curly.open</start-selector>
+		<end-selector>objective-c brace.curly.close</end-selector>
+		<subrecipes>
+			<include-root-recipes/>
+		</subrecipes>
+	</recipe>
+	
+	<!-- else { ... } -->
+	<recipe name="objc.block.control.generic">
+		<class>ESJSControlBlockItem</class>
+		<start-selector>objective-c keyword.control[text='else']:capture(itemizer-firstused) + brace.curly.open</start-selector>
+		<end-selector>objective-c brace.curly.close</end-selector>
+		<subrecipes>
+			<include-root-recipes/>
+		</subrecipes>
+	</recipe>
+	<!-- else /* comment */ { ... } -->
+	<recipe name="objc.block.control.generic">
+		<class>ESJSControlBlockItem</class>
+		<start-selector>objective-c keyword.control[text='else']:capture(itemizer-firstused) + comment + brace.curly.open</start-selector>
+		<end-selector>objective-c brace.curly.close</end-selector>
+		<subrecipes>
+			<include-root-recipes/>
+		</subrecipes>
+	</recipe>
+	
+	<!-- do { ... } while(...) -->
+	<recipe name="objc.block.control.do-while">
+		<class>ESJSControlBlockItem</class>
+		<start-selector>objective-c keyword.control[text='do']:capture(itemizer-firstused) + brace.curly.open</start-selector>
+		<end-selector>objective-c brace.curly.close + keyword.control[text='while'] + brace.round.open:capture(open-parameters) ~ brace.round.close:capture(close-parameters)</end-selector>
+	</recipe>
+	<!-- do /* comment */ { ... } while(...) -->
+	<recipe name="objc.block.control.do-while">
+		<class>ESJSControlBlockItem</class>
+		<start-selector>objective-c keyword.control[text='do']:capture(itemizer-firstused) + comment + brace.curly.open</start-selector>
+		<end-selector>objective-c brace.curly.close + keyword.control[text='while'] + brace.round.open:capture(open-parameters) ~ brace.round.close:capture(close-parameters)</end-selector>
+	</recipe>
+	
+	<!-- //! My Documentation Comment -->
+	<recipe name="objc.comment">
+	    <class>ESCommentItem</class>
+	    <selector>objective-c comment.documentation</selector>
+	    <subrecipes>
+	    	<recipe name="objc.comment.link">
+	    		<class>ESJSMarkupLink</class>
+	    		<selector>objective-c comment markup.link</selector>
+	    	</recipe>
+	    </subrecipes>
+	</recipe>
+	
+</itemizer>

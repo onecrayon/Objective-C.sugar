@@ -1,0 +1,22 @@
+/*
+	@theme Objective-C
+	@placeholder objective-c
+*/
+
+objective-c storage.type {
+	color: #4F9FCF;
+}
+
+objective-c keyword.language {
+	color: #626fc9;
+}
+
+objective-c function.definition name {
+	font-weight: normal;
+	color: #000000;
+}
+
+objective-c function.definition method-segment {
+	font-weight: bold;
+	color: #3a1d72;
+}
