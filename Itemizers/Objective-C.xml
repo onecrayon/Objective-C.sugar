@@ -19,6 +19,9 @@
 			<include-root-recipes />
 		</subrecipes>
 	</recipe>
+	<recipe name="objc.method.interface">
+		<selector>objective-c function.definition:capture(name)</selector>
+	</recipe>
 	
 	<!-- switch ( ... ) { ... } -->
 	<recipe name="objc.block.control.switch">
