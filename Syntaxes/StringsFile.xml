@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<syntax name="language-root.stringsfile">
+	<zones>
+		<!-- Comments -->
+		<zone name="comment.block">
+			<starts-with>
+				<expression>/\*</expression>
+				<capture number="0" name="punctuation.definition.begin"/>
+			</starts-with>
+			<ends-with>
+				<expression>\*/</expression>
+				<capture number="0" name="punctuation.definition.end"/>
+			</ends-with>
+		</zone>
+		<zone name="comment.line">
+			<expression>(//).*$[\n\r]*</expression>
+			<capture number="1" name="punctuation.definition.begin"/>
+		</zone>
+		
+		<!-- Strings -->
+		<zone>
+			<!-- Handles the standard key-value pair on a single line -->
+			<expression>((").*?("))\s*(=)\s*((").*?("))\s*(;)</expression>
+			<capture number="1" name="string.quoted.key">
+				<subzones>
+					<include collection="character-escapes" />
+				</subzones>
+			</capture>
+			<capture number="2" name="punctuation.definition.begin"/>
+			<capture number="3" name="punctuation.definition.end"/>
+			<capture number="4" name="punctuation"/>
+			<capture number="5" name="string.quoted">
+				<subzones>
+					<include collection="character-escapes" />
+				</subzones>
+			</capture>
+			<capture number="6" name="punctuation.definition.begin"/>
+			<capture number="7" name="punctuation.definition.end"/>
+			<capture number="8" name="punctuation"/>
+		</zone>
+		<zone name="string.quoted">
+			<starts-with>
+				<expression>"</expression>
+				<capture number="0" name="punctuation.definition.begin"/>
+			</starts-with>
+			<ends-with>
+				<expression>"</expression>
+				<capture number="0" name="punctuation.definition.end"/>
+			</ends-with>
+			<subzones>
+				<include collection="character-escapes" />
+			</subzones>
+		</zone>
+		<!-- Punctuation -->
+		<zone>
+			<expression>[=;]</expression>
+			<capture number="0" name="punctuation"/>
+		</zone>
+	</zones>
+	
+	<library>
+		<collection name="character-escapes">
+			<!-- Character escapes -->
+			<zone name="constant.character.escape">
+				<expression>\\(U\h{2,4}|.)</expression>
+			</zone>
+			<zone name="constant.character.format-specifier">
+				<expression>%(?:[hq]|l{1,2})?(?:\d+\$)?[@%dDiuUxXoOfeEgGcCsSpLaAfztjp]</expression>
+			</zone>
+		</collection>
+	</library>
+</syntax>

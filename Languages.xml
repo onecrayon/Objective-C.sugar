@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <settings>
-	<language id="com.onecrayon.objective-c">
+	<language id="com.onecrayon.sugar.objective-c">
 		<root-zone>language-root.objective-c</root-zone>
 
 		<name>Objective-C</name>
@@ -8,6 +8,16 @@
 		<detectors>
 			<extension>m</extension>
 			<extension>h</extension>
+		</detectors>
+	</language>
+	
+	<language id="com.onecrayon.sugar.objective-c.stringsfile">
+		<root-zone>language-root.stringsfile</root-zone>
+
+		<name>Strings File</name>
+
+		<detectors>
+			<extension>strings</extension>
 		</detectors>
 	</language>
 </settings>
