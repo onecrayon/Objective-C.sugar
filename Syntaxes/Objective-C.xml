@@ -141,8 +141,18 @@
 					<expression>(?=;|\{)</expression>
 				</ends-with>
 				<subzones name="name">
+					<zone>
+						<expression>(?&lt;=\+|-)\s*(\(\w*?\))\s*([a-zA-Z0-9_]+)(?=;)</expression>
+						<capture number="1">
+							<subzones>
+								<include collection="keywords" />
+								<include collection="punctuation" />
+							</subzones>
+						</capture>
+						<capture number="2" name="method-segment"/>
+					</zone>
 					<zone name="method-segment">
-						<expression>\b[a-zA-Z0-9_]+(:|;)</expression>
+						<expression>\b[a-zA-Z0-9_]+(:)</expression>
 						<capture number="1" name="punctuation"/>
 					</zone>
 					<include collection="keywords" />
