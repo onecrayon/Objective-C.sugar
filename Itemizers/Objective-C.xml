@@ -12,15 +12,15 @@
 	</recipe>
 	
 	<!-- Methods -->
-	<recipe name="objc.method">
+	<recipe name="objc.function.method">
 		<start-selector>objective-c function.definition:has-child(name:capture(name)):capture(itemizer-firstused) + brace.curly.open</start-selector>
 		<end-selector>objective-c brace.curly.close</end-selector>
 		<subrecipes>
 			<include-root-recipes />
 		</subrecipes>
 	</recipe>
-	<recipe name="objc.method.interface">
-		<selector>objective-c function.definition:capture(name)</selector>
+	<recipe name="objc.function.method.interface">
+		<selector>objective-c function.definition:capture(name):has-next(punctuation[text==';'])</selector>
 	</recipe>
 	
 	<!-- switch ( ... ) { ... } -->
