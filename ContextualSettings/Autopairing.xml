@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings>
+	<setting name="autopair-opt-in">
+		<syntax-context>stringsfile, stringsfile :not(comment, comment *, string, string :not(punctuation.end))</syntax-context>
+		<value>''""</value>
+	</setting>
+	
+	<setting name="autopair-opt-in">
+		<syntax-context>objective-c, objective-c :not(comment, comment *, regex, regex *, string, string :not(punctuation.end))</syntax-context>
+		<value>[]{}()''""</value>
+	</setting>
+</settings>
